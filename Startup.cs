@@ -23,6 +23,14 @@ namespace aspnetapp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+
+            services.AddMvc();
+
+	        services.AddDistributedRedisCache(option =>
+	        {
+		        option.Configuration = "127.0.0.1";
+		        option.InstanceName = "master";	        
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,18 +43,20 @@ namespace aspnetapp
             else
             {
                 app.UseExceptionHandler("/Error");
-            }
+            }       
 
             app.UseStaticFiles();
 
             app.UseRouting();
 
             app.UseAuthorization();
-
+                       
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
-            });
+                endpoints.MapControllers();          
+                 
+             });             
         }
     }
 }
