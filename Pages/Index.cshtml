@@ -7,8 +7,21 @@
 <div class="text-center">
     <h1>Hello, universe!</h1>
     <p>The time on the server is @DateTime.Now</p>
+    <br><br>
+    <p>A simple web app with a controller that writes and retrieves values from a redis store.  See the docker-compose.yml file for details.</p>
+    <ul style="text-align:left;">        
+        <li>To run both the web and redis containers: <code>docker-compose up -d</code></li>
+        <li>To view the home page go to: <code>http://localhost:8080</code></li>
+        <li>To get data from the controller: <code>curl -w "\n" http://localhost:8080/api/home</code></li>
+        <li>To post data to the controller: <code>curl --data "value=something interesting" http://localhost:8080/api/home</code></li>
+        <br>
+        <li>To run the redis container by iteslf for testing: <code>docker run -d -p 6379:6379 --name redis1 redis</code></li>        
+        <li>To run the web container by iteslf for testing: <code>docker run -d -p 8080:80 --name myapp aspnetapp</code></li>        
+    </ul>      
     <br>
-    <p>docker run -d -p 6379:6379 --name redis1 redis</p>
-    <p>curl -w "\n" http://localhost:port/api/home</p>
-    <p>curl --data "value=something" http://localhost:port/api/home</p>    
+    <p>How I installed docker-compose:</p>
+    <ul style="text-align:left;">
+        <li><code>sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose</code></li>
+        <li><code>sudo chmod +x /usr/local/bin/docker-compose</code></li>
+    </ul>      
 </div>

@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -28,9 +24,9 @@ namespace aspnetapp
 
 	        services.AddDistributedRedisCache(option =>
 	        {
-		        option.Configuration = "127.0.0.1";
-		        option.InstanceName = "master";	        
-            });
+		        option.Configuration = "redis";
+		        option.InstanceName = "master";                
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,8 +50,7 @@ namespace aspnetapp
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
-                endpoints.MapControllers();          
-                 
+                endpoints.MapControllers();                 
              });             
         }
     }
